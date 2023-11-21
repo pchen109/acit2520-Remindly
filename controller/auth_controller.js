@@ -1,20 +1,26 @@
-let database = require("../database");
+const database = require("../models/userModel");
 
 let authController = {
   login: (req, res) => {
     res.render("auth/login");
   },
-
+  
   register: (req, res) => {
     res.render("auth/register");
   },
-
-  loginSubmit: (req, res) => {
+  
+  loginSubmit: (req, res, next) => {
     // implement later
+    if (req.isAuthenticated()) {
+      console.log('abc')
+      return next()
+    }
+    res.redirect("/login")
   },
 
   registerSubmit: (req, res) => {
     // implement later
+    res.redirect("/register")
   },
 };
 
