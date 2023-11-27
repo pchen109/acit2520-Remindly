@@ -15,7 +15,7 @@ let authController = {
       console.log('abc')
       return next()
     }
-    res.redirect("/login")
+    res.redirect("/auth/login")
   },
 
   registerSubmit: (req, res) => {

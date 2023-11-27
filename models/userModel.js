@@ -17,8 +17,17 @@ const database = [
     {
       id: 2,
       name: "Johnny Doe",
-      email: "johnny123@gmail.com",
-      password: "johnny123!",
+      email: "b@b",
+      password: "123",
+      reminders: [
+        {
+          id: 1,
+          title: "Grocery shopping",
+          description: "Buy milk and bread from safeway",
+          completed: false,
+        },
+      ],
+      role: "admin",
     },
     {
       id: 3,

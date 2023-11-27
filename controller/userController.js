@@ -23,6 +23,8 @@ const getUserById = (id) => {
   return null;
 };
 
+// Check admin
+
 // Return true if password matched; otherwise, false
 function isUserValid(user, password) {
   return user.password === password;

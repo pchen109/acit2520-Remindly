@@ -1,0 +1,21 @@
+<div class="container d-flex justify-content-center align-items-start">
+    <div class="text-left">
+        <h1 class="page-header">Dashboard</h1>
+        <p>Welcome <%= data %></p>
+        <p>
+            <div>Cuurent Active Sessions:</div>
+            <div>SessionID: <%= session %> </div>
+            <div>UserID: <%= userId %></div>
+            <a href="/revoke-session/<%= sessionId %>">Revoke Session</a>
+        </p>
+        <p>
+            <!-- Display details of each session -->
+            <% allSessions.forEach(session => { %>
+                <div>Session ID: <%= session.passport.user %></div>
+                <div>User ID: <%= session.userId %></div>
+                <!-- Add other session details as needed -->
+                <hr> <!-- Separate each session's details -->
+            <% }) %>
+        </p>
+    </div>
+</div>

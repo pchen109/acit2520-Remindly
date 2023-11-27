@@ -13,10 +13,20 @@ module.exports = {
 		res.redirect("/auth/login");
 	},
 
+	isAdmin: function(req, res, next) {
+		if (req.user.role === 'admin') {
+			return next();
+		}
+		res.status(403).send('Access Forbidden');
+	},
+
 	// Show content accessible to guests
 	forwardAuthenticated: function (req, res, next) {
 		if (!req.isAuthenticated()) {
 			return next();
+		}
+		if (req.user.role == 'admin') {
+			return res.redirect("/admin")
 		}
 		res.redirect("/reminders");
 	},

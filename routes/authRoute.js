@@ -17,12 +17,20 @@ router.get("/login", forwardAuthenticated, (req, res) => res.render("auth/login"
 // Instead only need router.post(...); below
 
 router.post(
-	"/login",
-	passport.authenticate("local", {
-		successRedirect: "/reminders",
-		failureRedirect: "/auth/login",
-	})
+    "/login",
+    passport.authenticate("local", {
+        failureRedirect: "/auth/login",
+    }),
+    function(req, res) {
+        // Custom logic for redirection after successful login
+        if (req.user.role == 'admin') {
+            res.redirect("/admin");
+        } else {
+            res.redirect("/reminders"); // Redirect to the reminders page for regular users
+        }
+    }
 );
+
 
 router.get("/logout", (req, res) => {
 	req.logout();
