@@ -38,19 +38,19 @@ let adminController = {
             const sessions = [];
             sessionFiles.forEach(file => {
                 const filePath = path.join(sessionFolderPath, file);
-                const sessionData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-                sessions.push(sessionData);
+                const sessionData = JSON.parse(fs.readFileSync(filePath, 'utf8')).passport.user;
+                database.forEach(
+                    item => {
+                        if (item.id === sessionData) {
+                            const fileNameWithoutExtension = path.parse(file).name;
+                            sessions.push({ id: item.id, session: fileNameWithoutExtension });
+                        }
+                    }
+                )
+                // sessions.push(sessionData);
             });
-
-            // 'sessions' will contain data from session files
-            console.log('Retrieved sessions:', sessions);
-
-            
-
-            // Render your view or handle data as needed
-            sessionId = req.session.id;
             userId = req.user;
-            res.render("admin/admin", { data: req.user.name, userId: req.user.id, session: sessionId, allSessions: sessions });
+            res.render("admin/admin", { data: req.user.name, userId: req.user.id, allSessions: sessions });
         });
     },
 };

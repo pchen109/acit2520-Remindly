@@ -3,16 +3,14 @@
         <h1 class="page-header">Dashboard</h1>
         <p>Welcome <%= data %></p>
         <p>
-            <div>Cuurent Active Sessions:</div>
-            <div>SessionID: <%= session %> </div>
-            <div>UserID: <%= userId %></div>
-            <a href="/revoke-session/<%= sessionId %>">Revoke Session</a>
-        </p>
-        <p>
+            <div><%= session.user %></div>
             <!-- Display details of each session -->
             <% allSessions.forEach(session => { %>
-                <div>Session ID: <%= session.passport.user %></div>
-                <div>User ID: <%= session.userId %></div>
+                <div>Session ID: <%= session.session %></div>
+                <div>UserID: <%= session.id %></div>
+                <a href="/revoke-session/<%= session.session %>">Revoke Session</a>
+
+
                 <!-- Add other session details as needed -->
                 <hr> <!-- Separate each session's details -->
             <% }) %>
