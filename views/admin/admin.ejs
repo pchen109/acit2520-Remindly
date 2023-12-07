@@ -3,7 +3,6 @@
         <h1 class="page-header">Dashboard</h1>
         <p>Welcome <%= data %></p>
         <p>
-            <div><%= session.user %></div>
             <!-- Display details of each session -->
             <% allSessions.forEach(session => { %>
                 <div>Session ID: <%= session.session %></div>

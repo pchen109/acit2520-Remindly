@@ -56,10 +56,10 @@ app.use(passport.session());
 app.use((req, res, next) => {
     console.log(`User details are: `);
     console.log(req.user);
-    
+
     console.log("Entire session object:");
     console.log(req.session);
-    
+
     console.log(`Session details are: `);
     console.log(req.session.passport);
 
@@ -84,24 +84,13 @@ app.post("/login", authController.loginSubmit);
 /////////////////////////////////////////////////////////////
 const reminderController = require("./controller/reminder_controller");
 const adminController = require("./controller/admin_controller");
-const { ensureAuthenticated, isAdmin }= require("./middleware/checkAuth");
+const { ensureAuthenticated, isAdmin } = require("./middleware/checkAuth");
 
 // Admin Route
 // when you define multiple routes with the same URL pattern and HTTP method, only the first route that matches the pattern will be executed
-app.get("/admin", ensureAuthenticated, isAdmin, adminController.list);
+app.get("/admin", ensureAuthenticated, isAdmin, adminController.displayAdminSessions);
 // Endpoint to revoke session
-app.get('/revoke-session/:sessionId', (req, res) => {
-    const sessionId = req.params.sessionId;
-  
-    // Destroy the session associated with the provided sessionId
-    req.sessionStore.destroy(sessionId, (err) => {
-      if (err) {
-        res.status(500).send('Error revoking session');
-      } else {
-        res.send('Session revoked successfully');
-      }
-    });
-  });
+app.get('/revoke-session/:sessionId', adminController.revokeSession);
 
 
 // Reminder Routes
