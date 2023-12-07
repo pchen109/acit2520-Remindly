@@ -1,6 +1,6 @@
 // Functions for user authentication and retrieval based on email, password, and user ID.
 
-const userModel = require("../models/userModel").userModel;
+const userModel = require("../../models/userModel").userModel;
 
 // Verifies user credentials by email and password
 const getUserByEmailIdAndPassword = (email, password) => {

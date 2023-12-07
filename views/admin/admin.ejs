@@ -2,12 +2,12 @@
     <div class="text-left">
         <h1 class="page-header">Dashboard</h1>
         <p>Welcome <%= data %></p>
-        <% allSessions.forEach(session => { %>
-            <div>Session ID: <%= session.session %></div>
-            <div>UserID: <%= session.id %></div>
-            <a href="/revoke-session/<%= session.session %>">Revoke Session</a>
+        <% keys.forEach(key => { %>
+            <div>Session ID: <%= key %></div>
+            <div>UserID: <%= sessions[key].passport.user %></div>
+            <a href="/revoke-session/<%= key %>">Revoke Session</a>
             <hr>
         <% }) %>
-        <p><%= message%></p>
+        <p><%= message %></p>
     </div>
 </div>

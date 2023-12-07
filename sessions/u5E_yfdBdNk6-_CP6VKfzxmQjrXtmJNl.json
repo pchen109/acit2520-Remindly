@@ -1,0 +1,13 @@
+{
+    "cookie": {
+        "originalMaxAge": 86400000,
+        "expires": "2023-12-08T16:53:26.438Z",
+        "secure": false,
+        "httpOnly": true,
+        "path": "/"
+    },
+    "passport": {
+        "user": 1
+    },
+    "__lastAccess": 1701968006439
+}
