@@ -23,7 +23,7 @@ let adminController = {
                     }
                 });
             });
-            res.render("admin/admin", { data: req.user.name, userId: req.user.id, allSessions: sessions });
+            res.render("admin/admin", { data: req.user.name, userId: req.user.id, allSessions: sessions, message: req.query.message });
         });
     },
     revokeSession: (req, res) => {
@@ -32,7 +32,8 @@ let adminController = {
             if (err) {
                 res.status(500).send('Error revoking session');
             } else {
-                res.send('Session revoked successfully');
+                // res.send('Session revoked successfully');
+                res.redirect('/admin?message=Session+revoked+successfully');
             }
         });
     },
