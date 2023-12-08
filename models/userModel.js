@@ -33,29 +33,24 @@ const database = [
     {
       id: 3,
       name: "Jonathan Chen",
-      email: "jonathan123@gmail.com",
-      password: "jonathan123!",
+      email: "c@c",
+      password: "123",
+      reminders: [],
+      riole: "user",
     },
   ];
   
   const userModel = {
     findOne: (email) => {
       const user = database.find((user) => user.email === email);
-      if (user) {
-        return user;
-      }
+      if (user) return user;
       throw new Error(`Couldn't find user with email: ${email}`);
     },
     findById: (id) => {
       const user = database.find((user) => user.id === id);
-      if (user) {
-        return user;
-      }
+      if (user) return user;
       throw new Error(`Couldn't find user with id: ${id}`);
     },
   };
   
   module.exports = { database, userModel };
-  // module.exports = database;
-
-  

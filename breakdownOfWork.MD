@@ -8,8 +8,8 @@ I also watched all the videos uploaded to learning hub:
 1. These videos are unlisted. I shouldn't be allowed to post links here.
 
 
-March 20th (Second Sprint Complete)
-Amy Chan:
+Nov 27th (Second Sprint Complete)
+Peter (Yu Yen) Chen:
 I worked on the following tasks:
 1. <Insert Some Task Here> - This task is responsible for xyz functionality.
 

@@ -1,9 +1,3 @@
-const { database } = require("../models/userModel");
-const fs = require('fs');
-const path = require('path');
-
-const sessionFolderPath = './sessions';
-
 let adminController = {
     displayAdminSessions: (req, res) => {
         req.sessionStore.all((err, sessions) => {
@@ -15,11 +9,8 @@ let adminController = {
     revokeSession: (req, res) => {
         const sessionId = req.params.sessionId;
         req.sessionStore.destroy(sessionId, (err) => {
-            if (err) {
-                res.status(500).send('Error revoking session');
-            } else {
-                res.redirect('/admin?message=Session+revoked+successfully');
-            }
+            if (err) return res.status(500).send('Error revoking session');
+            res.redirect('/admin?message=Session+revoked+successfully');
         });
     },
 };

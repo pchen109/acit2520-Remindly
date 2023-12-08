@@ -16,17 +16,14 @@ const localLogin = new LocalStrategy(
 	}
 );
 
-passport.serializeUser(function (user, done) {
+passport.serializeUser( (user, done) => {
 	done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
-	let user = userController.getUserById(id);
-	if (user) {
-		done(null, user);
-	} else {
-		done({ message: "User not found" }, null);
-	}
+passport.deserializeUser( (id, done) => {
+	const user = userController.getUserById(id);
+	if (user) done(null, user);
+	else done({ message: "User not found" }, null);
 });
 
 module.exports = passport.use(localLogin);

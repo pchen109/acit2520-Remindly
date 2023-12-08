@@ -11,7 +11,6 @@ async function getRandomImage() {
         document.getElementById('randomImage').src = imageUrl;
         document.getElementById('randomImage').style.display = 'inline';
         document.getElementById('randomImageUrl').value = imageUrl;
-        document.getElementById('chosedImage').value = none;
     } catch (error) {
         console.error('Error fetching random image:', error);
     }
