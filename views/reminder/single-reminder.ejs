@@ -5,26 +5,31 @@
       <li class="list-group-item">
         <h3><strong><%= reminderItem.title %>: </strong></h3>
         <h4><%= reminderItem.description %></h4>
+        
         <h4>Completed:
           <% if (reminderItem.completed == true) { %>
             <span class="label label-success">True</span>
           <% } else if (reminderItem.completed == false) { %>
             <span class="label label-danger">False</span>
-          <% } %>
+          <% } %> 
         </h4>
 
-        <a class="btn btn-warning" href=<%= "/reminder/" + reminderItem.id + "/edit" %>>Edit</a>
+        <% if (reminderItem.imageUrl) { %>
+          <img src="<%= reminderItem.imageUrl %>" alt="Reminder Image"><br>
+        <% } else if (imageRandom) { %>
+          <img src="<%= reminderItem.imageUrl %>" alt="Random Image"><br>
+        <% } else { %>
+          <!-- Placeholder or default image in case imageUrl is not available -->
+          <img src="https://via.placeholder.com/300.png" alt="Default Image"> <br>
+        <% } %>
+
+        <a class="btn btn-warning" href=<%= "/reminder/" + reminderItem.id + "/edit" %>>
+          Edit
+        </a>
 
         <form class="deleteForm "method="POST" action=<%= "/reminder/delete/" + reminderItem.id %>>
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
-
-        <form action="/upload" method="POST" enctype="multipart/form-data">
-          <input type="file" name="image" />
-          <button type="submit">Upload</button>
-        </form>
-
       </li>
     </ul>
-
 </div>

@@ -1,13 +1,27 @@
 <div class="container">
-  <form action="/reminder" method="POST">
+  <form action="/reminder" method="POST" enctype="multipart/form-data">
+    
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" class="form-control" id="titleInput" placeholder="Title" name="title">
     </div>
+
     <div class="form-group">
       <label for="description">Description</label>
       <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Description" name="description"></textarea>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+
+    <div class="form-group">
+      <input type="file" name="image" id="chosedImage" onchange="hideRandomImage()"/>
+    </div>
+    
+    <input type="hidden" id="randomImageUrl" name="randomImageUrl" value="">
+
+    <img id="randomImage" src="" alt="Random Image" style="display: none;">
+    <p onclick="getRandomImage()" style="display: inline-block; border: 1px solid black">Get Random Image</p> <br>
+
+    <button type="submit" onclick="submitForm(event)" class="btn btn-default">Submit</button>
   </form>
 </div>
+
+<script src="/script.js"></script>

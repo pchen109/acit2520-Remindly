@@ -23,19 +23,6 @@ app.use(
     })
 );
 
-app.get('/active-sessions', (req, res) => {
-    const sessionStore = req.sessionStore;
-    sessionStore.length((err, count) => {
-        if (err) {
-            console.error('Error retrieving sessions:', err);
-            res.status(500).send('Error retrieving sessions');
-        } else {
-            res.send(`Active Sessions: ${count}`);
-        }
-    });
-});
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
@@ -54,30 +41,10 @@ app.use((req, res, next) => {
     next();
 });
 
-// IMAGE
-const fileUpload = require('express-fileupload');
-app.use(
-    fileUpload({
-        limits: {
-            fileSize: 10000000000,
-        },
-        abortOnLimit: true,
-    }), (req, res, next) => {
-        // console.log(req.files)
-        next()
-    }
-);
-app.post("/upload", (req, res) => {
-    // Get the file that was set to our field named "image"
-    const { image } = req.files;
-
-    // Move the uploaded image to our upload folder
-    image.mv(__dirname + '/upload/' + image.name)
-    res.redirect("/reminders");
-    // res.render("reminder/single-reminder", image );
-});
-
-/////////////
+// IMAGE /////////////////////////////////////////////
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' })
+//////////////////////////////////////////////////////
 
 const authController = require("./controller/auth_controller");
 
@@ -102,7 +69,7 @@ app.get("/reminder/:id", ensureAuthenticated, reminderController.listOne);
 app.get("/reminder/:id/edit", ensureAuthenticated, reminderController.edit);
 
 // CRUD Operations for Reminders
-app.post("/reminder/", ensureAuthenticated, reminderController.create);
+app.post("/reminder/", ensureAuthenticated, upload.single('image'), reminderController.create);
 app.post("/reminder/update/:id", ensureAuthenticated, reminderController.update);
 app.post("/reminder/delete/:id", ensureAuthenticated, reminderController.delete);
 

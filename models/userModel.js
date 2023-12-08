@@ -9,6 +9,7 @@ const database = [
           id: 1,
           title: "Grocery shopping",
           description: "Buy milk and bread from safeway",
+          imageUrl: "/uploads/grocery.JPG",
           completed: false,
         },
       ],

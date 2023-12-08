@@ -9,8 +9,7 @@ let adminController = {
         req.sessionStore.all((err, sessions) => {
             if (err) return console.error('Error retrieving sessions:', err);
             const sessionKeys = Object.keys(sessions)
-            const message = req.query.message;
-            res.render("admin/admin", {data: req.user.name, keys: sessionKeys, sessions, message});
+            res.render("admin/admin", {data: req.user.name, keys: sessionKeys, sessions});
         });
     },
     revokeSession: (req, res) => {
